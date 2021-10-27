@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :invoice_item do
-    quantity { 1 }
-    unit_price { 1.5 }
-    item { nil }
-    invoice { nil }
+    quantity { Faker::Number.digit }
+    unit_price { Faker::Number.decimal(l_digits: 2) }
+    item { Faker::Number.non_zero_digit }
+    invoice { Faker::Number.non_zero_digit }
   end
 end
