@@ -8,28 +8,16 @@ describe "Merchants API" do
 
     expect(response).to be_successful
 
-    books = JSON.parse(response.body, symbolize_names: true)
+    merchants = JSON.parse(response.body, symbolize_names: true)
 
-    expect(books.count).to eq(3)
+    expect(merchants.count).to eq(3)
 
-    books.each do |book|
-      expect(book).to have_key(:id)
-      expect(book[:id]).to be_an(Integer)
+    merchants.each do |merchant|
+      expect(merchant).to have_key(:id)
+      expect(merchant[:id]).to be_an(Integer)
 
-      expect(book).to have_key(:title)
-      expect(book[:title]).to be_a(String)
-
-      expect(book).to have_key(:author)
-      expect(book[:author]).to be_a(String)
-
-      expect(book).to have_key(:genre)
-      expect(book[:genre]).to be_a(String)
-
-      expect(book).to have_key(:summary)
-      expect(book[:summary]).to be_a(String)
-
-      expect(book).to have_key(:number_sold)
-      expect(book[:number_sold]).to be_an(Integer)
+      expect(merchant).to have_key(:name)
+      expect(merchant[:name]).to be_a(String)
     end
   end
 
@@ -45,19 +33,7 @@ describe "Merchants API" do
     expect(merchant).to have_key(:id)
     expect(merchant[:id]).to eq(id)
 
-    expect(merchant).to have_key(:title)
-    expect(merchant[:title]).to be_a(String)
-
-    expect(merchant).to have_key(:author)
-    expect(merchant[:author]).to be_a(String)
-
-    expect(merchant).to have_key(:genre)
-    expect(merchant[:genre]).to be_a(String)
-
-    expect(merchant).to have_key(:summary)
-    expect(merchant[:summary]).to be_a(String)
-
-    expect(merchant).to have_key(:number_sold)
-    expect(merchant[:number_sold]).to be_an(Integer)
+    expect(merchant).to have_key(:name)
+    expect(merchant[:name]).to be_a(String)
   end
 end
