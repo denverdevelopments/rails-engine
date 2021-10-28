@@ -241,9 +241,9 @@
         "lines": [
           1,
           1,
-          5,
-          5,
-          5,
+          1,
+          1,
+          1,
           1,
           null,
           null
@@ -253,7 +253,7 @@
         "lines": [
           1,
           1,
-          8,
+          6,
           null,
           null
         ]
@@ -279,54 +279,12 @@
           1,
           1,
           1,
-          1,
-          null,
           null,
           1,
           null,
           null,
-          null
-        ]
-      },
-      "/Users/kevinn/turing/mod-3/rails-engine/spec/requests/api/v1/merchants_request_spec.rb": {
-        "lines": [
           1,
           null,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          3,
-          3,
-          null,
-          3,
-          3,
-          null,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          1,
-          1,
           null,
           null
         ]
@@ -348,54 +306,6 @@
           null
         ]
       },
-      "/Users/kevinn/turing/mod-3/rails-engine/app/models/item.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/kevinn/turing/mod-3/rails-engine/app/controllers/api/v1/items_controller.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          0,
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/kevinn/turing/mod-3/rails-engine/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
       "/Users/kevinn/turing/mod-3/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
         "lines": [
           1,
@@ -405,7 +315,12 @@
           null,
           null,
           1,
+          2,
+          null,
+          null,
           1,
+          0,
+          null,
           null,
           null,
           1,
@@ -415,8 +330,14 @@
           null,
           null
         ]
+      },
+      "/Users/kevinn/turing/mod-3/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1635321158
+    "timestamp": 1635378273
   }
 }

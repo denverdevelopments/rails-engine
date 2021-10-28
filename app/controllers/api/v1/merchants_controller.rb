@@ -1,12 +1,19 @@
 class Api::V1::MerchantsController < ApplicationController
 
   def index
-    render json: Merchant.all
+    # render json: Merchant.all
+    merchants = Merchant.all
+    render json: MerchantSerializer.new(merchants).serializable_hash.to_json
   end
 
   def show
-    render json: Merchant.find(params[:id])
+    merchant = Merchant.find(params[:id])
+    render json: MerchantSerializer.new(merchant).serializable_hash.to_json
   end
+
+  # def goods
+  #   render json: Item.where(merchant_id: params[:merchant_id])
+  # end
 
   private
 
