@@ -1,7 +1,7 @@
 class MerchantSerializer
   include JSONAPI::Serializer
-  attributes :id, :name
+  attributes :name  #:id
 
-  has_many :items
-  has_many :invoices
+  # has_many :items
+  # has_many :invoices
 end

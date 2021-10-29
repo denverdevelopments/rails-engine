@@ -8,18 +8,13 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def show
-    # if Merchant.exist?  #(params[:id])
-      merchant = Merchant.find(params[:id])
+    merchant = Merchant.find(params[:id])
+    if merchant
       render json: MerchantSerializer.new(merchant)
-    # else
-    #   render json: {errors: 'invalid id'}, status: :not_found
-    # end
+    else
+      render json: {errors: 'invalid id'}, status: :not_found
+    end
   end
-
-  # def goods
-  #   render json: Item.where(merchant_id: params[:merchant_id])
-  # end #.serializable_hash.to_json
-  # require "pry"; binding.pry
 
   private
 
