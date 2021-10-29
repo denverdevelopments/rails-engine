@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       namespace :items do
         resources :find_all, only: :index
       end
+      namespace :revenue do
+        resources :merchants, only: :show
+      end
     end
   end
 end

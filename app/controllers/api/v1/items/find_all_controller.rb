@@ -1,18 +1,10 @@
 class Api::V1::Items::FindAllController < ApplicationController
-
-
-  def show
-    item = Item.find(params[:item_id])
-    vendor = item.merchant
-    render json: MerchantSerializer.new(vendor)
-    # else
-    #   render json: {errors: 'invalid id'}, status: :not_found
-    # end
-  end
-
-  private
-
-    def merchant_params
-      params.require(:merchant).permit(:name)
+  def index
+    items = Item.search(params[:name])
+    if items.first.nil?
+      render json: {data: []}
+    else
+      render json: ItemSerializer.new(items)
     end
+  end
 end
