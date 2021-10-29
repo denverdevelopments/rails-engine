@@ -1,5 +1,4 @@
 class Api::V1::ItemsController < ApplicationController
-
   def index
     per_page = params.fetch(:per_page, 20).to_i
     page = [params.fetch(:page, 1).to_i, 1].max
