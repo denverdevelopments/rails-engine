@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe "Items API Index" do
   it "sends a list of items" do
-    merchant1 = create(:merchant)
-    create_list(:item, 3, merchant: merchant1)
+    vendor = create(:merchant)
+    create_list(:item, 3, merchant: vendor)
 
     get '/api/v1/items'
 
@@ -25,5 +25,17 @@ describe "Items API Index" do
       expect(item[:attributes]).to have_key(:unit_price)
       expect(item[:attributes][:unit_price]).to be_an(Float)
     end
+  end
+
+  it "sends a list of 20 items per page" do
+    vendor = create(:merchant)
+    create_list(:item, 35, merchant: vendor)
+
+    get '/api/v1/items'
+
+    expect(response).to be_successful
+
+    items = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(items.count).to eq(20)
   end
 end
