@@ -27,16 +27,16 @@ describe "Items API Show" do
     end
   end
 
-  # context "Sad path, can not find item" do
-  #   it "returns a 404 error given a bad id input" do
-  #     vendor = create(:merchant)
-  #     items = create_list(:item, 3, merchant: vendor)
-  #
-  #     get "/api/v1/items/4875875476867678"
-  #     expect(response).to have_http_status(:not_found)
-  #
-  #     get "/api/v1/items/abcdefg"
-  #     expect(response).to have_http_status(:not_found)
-  #   end
-  # end
+  context "Sad path, can not find item" do
+    it "returns a 404 error given a bad id input" do
+      vendor = create(:merchant)
+      items = create_list(:item, 3, merchant: vendor)
+
+      get "/api/v1/items/4875875476867678"
+      expect(response).to have_http_status(:not_found)
+
+      get "/api/v1/items/abcdefg"
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end

@@ -22,7 +22,11 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    render json: Item.update(params[:id], item_params)
+    if @item.update(item_params)
+      render json: ItemSerializer.new(@item)
+    else
+      render json: { error: "Invalid Inputs", code: 400 }, status: :bad_request
+    end
   end
 
   def destroy

@@ -1,23 +1,46 @@
 require 'rails_helper'
 
 describe "Items API Update" do
-  xit "can create a new item" do
-    vendor = create(:merchant)
-    item_params = ({
-                    name: 'Thing 1',
-                    description: 'Is not Thing 2',
-                    unit_price: 4.32,
-                    merchant_id: vendor.id
-                  })
+  context "Happy path, it can update" do
+    it "can update an existing item" do
+      vendor = create(:merchant)
+      item = create(:item, merchant: vendor)
+      item_params = { name: "Thingy"}
 
-    post "/api/v1/items", params: { item: item_params }
-    created_item = Item.last
+      put "/api/v1/items/#{item.id}", params: { item: item_params}
 
-    expect(response).to be_successful
-    expect(created_item.name).to eq(item_params[:name])
-    expect(created_item.description).to eq(item_params[:description])
-    expect(created_item.unit_price).to eq(item_params[:unit_price])
+      expect(response).to be_successful
+    end
+  end
 
-    created_item.destroy
+  context "Sad path, it fails to update" do
+    it "gives error if given bad merchant id" do
+      vendor = create(:merchant)
+      item = create(:item, merchant: vendor)
+      item_params = { name: "Thingy", merchant_id: 123748}
+
+      put "/api/v1/items/#{item.id}", params: { item: item_params}
+      expect(response).to have_http_status(:bad_request)
+
+      message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(message).to have_key(:error)
+      expect(message[:error]).to eq("Invalid Inputs")
+    end
+
+    it "gives an error if given bad item id" do
+      vendor = create(:merchant)
+      item = create(:item, merchant: vendor)
+      item_params = { name: "Thingy"}
+
+      put "/api/v1/items/1234566", params: { item: item_params}
+
+      expect(response).to have_http_status(:not_found)
+
+      message = JSON.parse(response.body, symbolize_names: true)
+
+      expect(message).to have_key(:error)
+      expect(message[:error]).to eq("Item does not exist")
+    end
   end
 end
