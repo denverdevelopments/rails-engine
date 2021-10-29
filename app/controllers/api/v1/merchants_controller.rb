@@ -8,17 +8,12 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def show
-    merchant = Merchant.find(params[:id])
-    if merchant
-      render json: MerchantSerializer.new(merchant)
+    if !Merchant.exists?(params[:id])
+      render json: { error: "Merchant does not exist", code: 404 }, status: :not_found
     else
-      render json: {errors: 'invalid id'}, status: :not_found
+      merchant = Merchant.find(params[:id])
+      render json: MerchantSerializer.new(merchant)
     end
   end
 
-  private
-
-    def merchant_params
-      params.require(:merchant).permit(:name)
-    end
 end
