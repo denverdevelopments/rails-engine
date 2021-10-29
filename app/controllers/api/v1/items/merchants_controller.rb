@@ -5,9 +5,6 @@ class Api::V1::Items::MerchantsController < ApplicationController
     item = Item.find(params[:item_id])
     vendor = item.merchant
     render json: MerchantSerializer.new(vendor)
-    # else
-    #   render json: {errors: 'invalid id'}, status: :not_found
-    # end
   end
 
   private

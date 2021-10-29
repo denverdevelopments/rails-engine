@@ -31,7 +31,7 @@ describe "Items API Create & Delete" do
   end
 
   context "Sad path, fails to create item" do
-    it "create item sad path" do
+    it "shows create item error message" do
       vendor = create(:merchant)
       item_params = ({
                       name: 'Missing attributes'

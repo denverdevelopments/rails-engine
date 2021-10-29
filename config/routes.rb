@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         end
       end
       namespace :merchants do
-        resources :find_one, only: :show
+        resources :find_one, only: :index
       end
       resources :items  do
         resources :merchant, only: [:index], to: 'items/merchants#index'

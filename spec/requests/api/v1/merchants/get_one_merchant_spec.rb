@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Merchants API Show" do
-  context "Happy path, can find merchant" do
+  context "Happy path, can show the merchant" do
     it "can get one merchant by its id" do
       id = create(:merchant).id
 
@@ -20,10 +20,9 @@ describe "Merchants API Show" do
 
   end
 
-  context "Sad path, fails to find merchant" do
+  context "Sad path, fails to show the merchant" do
     it "returns a 404 error given a bad id input" do
       vendor = create(:merchant)
-      # items = create_list(:item, 3, merchant: vendor)
 
       get "/api/v1/merchants/4875875476867678"
       expect(response).to have_http_status(:not_found)
