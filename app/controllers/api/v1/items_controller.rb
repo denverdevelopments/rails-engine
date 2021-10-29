@@ -1,4 +1,5 @@
 class Api::V1::ItemsController < ApplicationController
+  before_action :item_exists, :set_item, only: [:show, :update, :destroy]
 
   def index
     per_page = params.fetch(:per_page, 20).to_i
@@ -8,8 +9,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    item = Item.find(params[:id])
-    render json: ItemSerializer.new(item)
+    render json: ItemSerializer.new(@item)
   end
 
   def create
@@ -27,11 +27,18 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
   end
 
   private
+
+    def set_item
+      @item = Item.find(params[:id])
+    end
+
+    def item_exists
+      render json: { error: "Item does not exist", code: 404 }, status: :not_found if !Item.exists?(params[:id])
+    end
 
     def item_params
       params.require(:item).permit(:name, :description, :unit_price, :merchant_id )

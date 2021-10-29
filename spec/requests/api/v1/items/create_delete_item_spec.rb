@@ -22,5 +22,9 @@ describe "Items API Create & Delete" do
 
     expect(response).to be_successful
     expect{Item.find(created_item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+
+    get "/api/v1/items/#{created_item.id}"
+
+    expect(response).to have_http_status(:not_found)
   end
 end
