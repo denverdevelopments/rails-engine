@@ -26,11 +26,6 @@ class Api::V1::ItemsController < ApplicationController
     render json: Item.update(params[:id], item_params)
   end
 
-  def show
-    item = Item.find(params[:id])
-    render json: ItemSerializer.new(item)
-  end
-
   def destroy
     item = Item.find(params[:id])
     item.destroy

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe "Items API Create & Delete" do
-  it "can create a new item" do
+describe "Items API Update" do
+  xit "can create a new item" do
     vendor = create(:merchant)
     item_params = ({
                     name: 'Thing 1',
@@ -18,9 +18,6 @@ describe "Items API Create & Delete" do
     expect(created_item.description).to eq(item_params[:description])
     expect(created_item.unit_price).to eq(item_params[:unit_price])
 
-    delete "/api/v1/items/#{created_item.id}"
-
-    expect(response).to be_successful
-    expect{Item.find(created_item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    created_item.destroy
   end
 end

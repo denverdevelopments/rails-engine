@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe "Items API Show" do
   it "can get one item by its id" do
-    merchant2 = create(:merchant)
-    id = create(:item, merchant: merchant2).id
+    vendor = create(:merchant)
+    id = create(:item, merchant: vendor).id
 
     get "/api/v1/items/#{id}"
 
@@ -23,5 +23,18 @@ describe "Items API Show" do
 
     expect(item[:attributes]).to have_key(:unit_price)
     expect(item[:attributes][:unit_price]).to be_an(Float)
+  end
+
+  it "returns a 404 error given a bad id input" do
+    items = create_list(:item, 3)
+
+    get "/api/v1/items/4875875476867678"
+
+    expect(response).to have_http_status(:not_found)
+
+
+    get "/api/v1/items/abcdefg"
+
+    expect(response).to have_http_status(:not_found)
   end
 end
