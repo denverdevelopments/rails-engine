@@ -14,7 +14,7 @@ describe "Items API Update" do
   end
 
   context "Sad path, it fails to update" do
-    it "gives error if given bad merchant id" do
+    it "shows error if given bad merchant id" do
       vendor = create(:merchant)
       item = create(:item, merchant: vendor)
       item_params = { name: "Thingy", merchant_id: 123748}
@@ -28,7 +28,7 @@ describe "Items API Update" do
       expect(message[:error]).to eq("Invalid Inputs")
     end
 
-    it "gives an error if given bad item id" do
+    it "shows an error if given bad item id" do
       vendor = create(:merchant)
       item = create(:item, merchant: vendor)
       item_params = { name: "Thingy"}

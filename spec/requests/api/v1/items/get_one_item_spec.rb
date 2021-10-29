@@ -27,7 +27,7 @@ describe "Items API Show" do
     end
   end
 
-  context "Sad path, can not find item" do
+  context "Sad path, fails to find item" do
     it "returns a 404 error given a bad id input" do
       vendor = create(:merchant)
       items = create_list(:item, 3, merchant: vendor)
