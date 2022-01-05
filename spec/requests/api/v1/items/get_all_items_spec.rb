@@ -4,13 +4,14 @@ describe "Items API Index" do
   it "sends a list of items" do
     vendor = create(:merchant)
     create_list(:item, 3, merchant: vendor)
-
+    # require "pry"; binding.pry
     get '/api/v1/items'
 
     expect(response).to be_successful
 
     items = JSON.parse(response.body, symbolize_names: true)[:data]
     expect(items.count).to eq(3)
+    # require "pry"; binding.pry
 
     items.each do |item|
       expect(item).to have_key(:id)
